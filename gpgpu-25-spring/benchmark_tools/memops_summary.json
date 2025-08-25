@@ -1,0 +1,515 @@
+[
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.192731",
+        "source_file": "report_NYCJ.sqlite",
+        "data": {
+            "Host-to-Device": 390,
+            "Device-to-Host": 384
+        }
+    },
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.194884",
+        "source_file": "report_fast.sqlite",
+        "data": {
+            "Host-to-Device": 2363,
+            "Device-to-Host": 2331
+        }
+    },
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.196938",
+        "source_file": "report_ACET.sqlite",
+        "data": {
+            "Host-to-Device": 834,
+            "Device-to-Host": 818
+        }
+    },
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.199541",
+        "source_file": "report_FindTheCake.sqlite",
+        "data": {
+            "Host-to-Device": 2725,
+            "Device-to-Host": 2693
+        }
+    },
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.202369",
+        "source_file": "report_Epit\u2019o.sqlite",
+        "data": {
+            "Host-to-Device": 9303,
+            "Device-to-Host": 9191
+        }
+    },
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.205091",
+        "source_file": "report_G_Pas_Pu.sqlite",
+        "data": {
+            "Host-to-Device": 2345,
+            "Device-to-Host": 2313
+        }
+    },
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.207890",
+        "source_file": "report_power.sqlite",
+        "data": {
+            "Host-to-Device": 2814,
+            "Device-to-Host": 2782
+        }
+    },
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.209852",
+        "source_file": "report_Pepper.sqlite",
+        "data": {
+            "Host-to-Device": 799,
+            "Device-to-Host": 785
+        }
+    },
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.212304",
+        "source_file": "report_climabouffe.sqlite",
+        "data": {
+            "Host-to-Device": 2493,
+            "Device-to-Host": 2462
+        }
+    },
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.214501",
+        "source_file": "report_SCIA_Premium.sqlite",
+        "data": {
+            "Host-to-Device": 182,
+            "Device-to-Host": 178
+        }
+    },
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.216873",
+        "source_file": "report_Sideral.sqlite",
+        "data": {
+            "Host-to-Device": 1574,
+            "Device-to-Host": 1542
+        }
+    },
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.219387",
+        "source_file": "report_lil_clown_studio.sqlite",
+        "data": {
+            "Host-to-Device": 2220,
+            "Device-to-Host": 2189
+        }
+    },
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.221425",
+        "source_file": "report_Kaaris.sqlite",
+        "data": {
+            "Host-to-Device": 1514,
+            "Device-to-Host": 1483
+        }
+    },
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.222891",
+        "source_file": "report_toto.sqlite",
+        "data": {
+            "Host-to-Device": 731,
+            "Device-to-Host": 700
+        }
+    },
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.225344",
+        "source_file": "report_Kadocuda.sqlite",
+        "data": {
+            "Host-to-Device": 2250,
+            "Device-to-Host": 2218
+        }
+    },
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.227299",
+        "source_file": "report_sante_best.sqlite",
+        "data": {
+            "Host-to-Device": 1354,
+            "Device-to-Host": 1322
+        }
+    },
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.229160",
+        "source_file": "report_les_i\u00e8ps.sqlite",
+        "data": {
+            "Host-to-Device": 261,
+            "Device-to-Host": 255
+        }
+    },
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.231850",
+        "source_file": "report_Aled.sqlite",
+        "data": {
+            "Host-to-Device": 2547,
+            "Device-to-Host": 2515
+        }
+    },
+    {
+        "version": "Version 1",
+        "timestamp": "2025-06-19T17:31:38.234072",
+        "source_file": "report_larbhein.sqlite",
+        "data": {
+            "Host-to-Device": 749,
+            "Device-to-Host": 735
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.740923",
+        "source_file": "report_NYCJ.sqlite",
+        "data": {
+            "Host-to-Device": 385,
+            "Device-to-Host": 385
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.744084",
+        "source_file": "report_fast.sqlite",
+        "data": {
+            "Host-to-Device": 2337,
+            "Device-to-Host": 2337
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.746699",
+        "source_file": "report_ACET.sqlite",
+        "data": {
+            "Host-to-Device": 821,
+            "Device-to-Host": 821
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.750053",
+        "source_file": "report_FindTheCake.sqlite",
+        "data": {
+            "Host-to-Device": 2699,
+            "Device-to-Host": 2699
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.753606",
+        "source_file": "report_Epit\u2019o.sqlite",
+        "data": {
+            "Host-to-Device": 9212,
+            "Device-to-Host": 9212
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.757344",
+        "source_file": "report_G_Pas_Pu.sqlite",
+        "data": {
+            "Host-to-Device": 2319,
+            "Device-to-Host": 2319
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.761313",
+        "source_file": "report_power.sqlite",
+        "data": {
+            "Host-to-Device": 2788,
+            "Device-to-Host": 2788
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.764308",
+        "source_file": "report_Pepper.sqlite",
+        "data": {
+            "Host-to-Device": 788,
+            "Device-to-Host": 788
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.768410",
+        "source_file": "report_climabouffe.sqlite",
+        "data": {
+            "Host-to-Device": 2467,
+            "Device-to-Host": 2467
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.771085",
+        "source_file": "report_SCIA_Premium.sqlite",
+        "data": {
+            "Host-to-Device": 179,
+            "Device-to-Host": 179
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.773847",
+        "source_file": "report_Sideral.sqlite",
+        "data": {
+            "Host-to-Device": 1548,
+            "Device-to-Host": 1548
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.776814",
+        "source_file": "report_lil_clown_studio.sqlite",
+        "data": {
+            "Host-to-Device": 2195,
+            "Device-to-Host": 2195
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.779316",
+        "source_file": "report_Kaaris.sqlite",
+        "data": {
+            "Host-to-Device": 1489,
+            "Device-to-Host": 1489
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.781310",
+        "source_file": "report_toto.sqlite",
+        "data": {
+            "Host-to-Device": 705,
+            "Device-to-Host": 705
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.784373",
+        "source_file": "report_Kadocuda.sqlite",
+        "data": {
+            "Host-to-Device": 2224,
+            "Device-to-Host": 2224
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.787444",
+        "source_file": "report_sante_best.sqlite",
+        "data": {
+            "Host-to-Device": 1328,
+            "Device-to-Host": 1328
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.790420",
+        "source_file": "report_les_i\u00e8ps.sqlite",
+        "data": {
+            "Host-to-Device": 256,
+            "Device-to-Host": 256
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.793850",
+        "source_file": "report_Aled.sqlite",
+        "data": {
+            "Host-to-Device": 2521,
+            "Device-to-Host": 2521
+        }
+    },
+    {
+        "version": "Version 2",
+        "timestamp": "2025-06-19T21:43:15.796678",
+        "source_file": "report_larbhein.sqlite",
+        "data": {
+            "Host-to-Device": 738,
+            "Device-to-Host": 738
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.663627",
+        "source_file": "report_NYCJ.sqlite",
+        "data": {
+            "Host-to-Device": 385,
+            "Device-to-Host": 385
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.667326",
+        "source_file": "report_fast.sqlite",
+        "data": {
+            "Host-to-Device": 2337,
+            "Device-to-Host": 2337
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.685034",
+        "source_file": "report_ACET.sqlite",
+        "data": {
+            "Host-to-Device": 821,
+            "Device-to-Host": 821
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.689003",
+        "source_file": "report_FindTheCake.sqlite",
+        "data": {
+            "Host-to-Device": 2699,
+            "Device-to-Host": 2699
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.694321",
+        "source_file": "report_Epit\u2019o.sqlite",
+        "data": {
+            "Host-to-Device": 9212,
+            "Device-to-Host": 9212
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.699585",
+        "source_file": "report_G_Pas_Pu.sqlite",
+        "data": {
+            "Host-to-Device": 2319,
+            "Device-to-Host": 2319
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.704094",
+        "source_file": "report_power.sqlite",
+        "data": {
+            "Host-to-Device": 2788,
+            "Device-to-Host": 2788
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.707565",
+        "source_file": "report_Pepper.sqlite",
+        "data": {
+            "Host-to-Device": 788,
+            "Device-to-Host": 788
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.711686",
+        "source_file": "report_climabouffe.sqlite",
+        "data": {
+            "Host-to-Device": 2467,
+            "Device-to-Host": 2467
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.715129",
+        "source_file": "report_SCIA_Premium.sqlite",
+        "data": {
+            "Host-to-Device": 179,
+            "Device-to-Host": 179
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.718685",
+        "source_file": "report_Sideral.sqlite",
+        "data": {
+            "Host-to-Device": 1548,
+            "Device-to-Host": 1548
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.724830",
+        "source_file": "report_lil_clown_studio.sqlite",
+        "data": {
+            "Host-to-Device": 2195,
+            "Device-to-Host": 2195
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.728986",
+        "source_file": "report_Kaaris.sqlite",
+        "data": {
+            "Host-to-Device": 1489,
+            "Device-to-Host": 1489
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.731988",
+        "source_file": "report_toto.sqlite",
+        "data": {
+            "Host-to-Device": 705,
+            "Device-to-Host": 705
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.736190",
+        "source_file": "report_Kadocuda.sqlite",
+        "data": {
+            "Host-to-Device": 2224,
+            "Device-to-Host": 2224
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.741740",
+        "source_file": "report_sante_best.sqlite",
+        "data": {
+            "Host-to-Device": 1328,
+            "Device-to-Host": 1328
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.745412",
+        "source_file": "report_les_i\u00e8ps.sqlite",
+        "data": {
+            "Host-to-Device": 256,
+            "Device-to-Host": 256
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.750088",
+        "source_file": "report_Aled.sqlite",
+        "data": {
+            "Host-to-Device": 2521,
+            "Device-to-Host": 2521
+        }
+    },
+    {
+        "version": "Version 3",
+        "timestamp": "2025-06-20T00:21:48.754163",
+        "source_file": "report_larbhein.sqlite",
+        "data": {
+            "Host-to-Device": 738,
+            "Device-to-Host": 738
+        }
+    }
+]

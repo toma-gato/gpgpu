@@ -1,0 +1,267 @@
+#include "filter_impl.h"
+#include <cassert>
+#include <vector>
+#include <cmath>
+#include <cstdio>
+
+#define CHECK_CUDA_ERROR(val) check((val), #val, __FILE__, __LINE__)
+template <typename T>
+void check(T err, const char* const func, const char* const file,
+           const int line)
+{
+    if (err != cudaSuccess)
+    {
+        std::fprintf(stderr, "CUDA Runtime Error at: %s: %d\n", file, line);
+        std::fprintf(stderr, "%s %s\n", cudaGetErrorString(err), func);
+        // We don't exit when we encounter CUDA errors in this example.
+        std::exit(EXIT_FAILURE);
+    }
+}
+
+struct rgb {
+    uint8_t r, g, b;
+};
+
+struct PixelState {
+    float bg_r, bg_g, bg_b;
+    int time;
+};
+
+__device__ float colorDistance(const rgb& p1, const rgb& p2) {
+    return sqrtf((p1.r - p2.r) * (p1.r - p2.r) +
+                 (p1.g - p2.g) * (p1.g - p2.g) +
+                 (p1.b - p2.b) * (p1.b - p2.b));
+}
+
+__global__ void detectMotionKernel(
+    uint8_t* buffer,
+    PixelState* pixel_states,
+    float* motion_mask,
+    int width,
+    int height,
+    int stride) 
+{
+    int x = blockIdx.x * blockDim.x + threadIdx.x;
+    int y = blockIdx.y * blockDim.y + threadIdx.y;
+    
+    if (x >= width || y >= height)
+        return;
+
+    int idx = y * width + x;
+    rgb* lineptr = (rgb*)(buffer + y * stride);
+    PixelState& state = pixel_states[idx];
+    rgb& pixel = lineptr[x];
+
+    rgb bg_pixel = {uint8_t(state.bg_r), uint8_t(state.bg_g), uint8_t(state.bg_b)};
+    float distance = colorDistance(pixel, bg_pixel);
+
+    if (distance < 25.0f) {
+        state.time = 0;
+        motion_mask[idx] = 0.0f;
+    } else {
+        motion_mask[idx] = distance;
+        state.time++;
+
+        if (state.time > 100) {
+            state.bg_r = pixel.r;
+            state.bg_g = pixel.g;
+            state.bg_b = pixel.b;
+            state.time = 0;
+        }
+    }
+}
+
+__global__ void applyMotionMaskKernel(
+    uint8_t* buffer,
+    float* motion_mask,
+    int width,
+    int height,
+    int stride)
+{
+    int x = blockIdx.x * blockDim.x + threadIdx.x;
+    int y = blockIdx.y * blockDim.y + threadIdx.y;
+    
+    if (x >= width || y >= height)
+        return;
+
+    int idx = y * width + x;
+    if (motion_mask[idx] > 0.0f) {
+        rgb* lineptr = (rgb*)(buffer + y * stride);
+        lineptr[x].r = min(255, lineptr[x].r + uint8_t(0.5f * 255));
+    }
+}
+
+__global__ void morphologicalErosionKernel(
+    float* input,
+    float* output,
+    int width,
+    int height,
+    int radius)
+{
+    int x = blockIdx.x * blockDim.x + threadIdx.x;
+    int y = blockIdx.y * blockDim.y + threadIdx.y;
+    
+    if (x >= width || y >= height)
+        return;
+
+    float min_val = 255.0f;
+    for (int dy = -radius; dy <= radius; ++dy) {
+        for (int dx = -radius; dx <= radius; ++dx) {
+            if (dx * dx + dy * dy <= radius * radius) {
+                int nx = x + dx;
+                int ny = y + dy;
+                if (nx >= 0 && nx < width && ny >= 0 && ny < height) {
+                    min_val = min(min_val, input[ny * width + nx]);
+                }
+            }
+        }
+    }
+    output[y * width + x] = min_val;
+}
+
+__global__ void morphologicalDilationKernel(
+    float* input,
+    float* output,
+    int width,
+    int height,
+    int radius)
+{
+    int x = blockIdx.x * blockDim.x + threadIdx.x;
+    int y = blockIdx.y * blockDim.y + threadIdx.y;
+    
+    if (x >= width || y >= height)
+        return;
+
+    float max_val = 0.0f;
+    for (int dy = -radius; dy <= radius; ++dy) {
+        for (int dx = -radius; dx <= radius; ++dx) {
+            if (dx * dx + dy * dy <= radius * radius) {
+                int nx = x + dx;
+                int ny = y + dy;
+                if (nx >= 0 && nx < width && ny >= 0 && ny < height) {
+                    max_val = max(max_val, input[ny * width + nx]);
+                }
+            }
+        }
+    }
+    output[y * width + x] = max_val;
+}
+
+__global__ void hysteresisThresholdingKernel(
+    float* motion_mask,
+    int width,
+    int height,
+    float low_thresh,
+    float high_thresh)
+{
+    int x = blockIdx.x * blockDim.x + threadIdx.x;
+    int y = blockIdx.y * blockDim.y + threadIdx.y;
+    
+    if (x >= width || y >= height)
+        return;
+
+    int idx = y * width + x;
+    float value = motion_mask[idx];
+    
+    if (value >= high_thresh) {
+        motion_mask[idx] = 1.0f;
+    } else if (value < low_thresh) {
+        motion_mask[idx] = 0.0f;
+    } else {
+        bool strong_neighbor = false;
+        for (int dy = -1; dy <= 1 && !strong_neighbor; ++dy) {
+            for (int dx = -1; dx <= 1; ++dx) {
+                int ny = y + dy;
+                int nx = x + dx;
+                if (ny >= 0 && ny < height && nx >= 0 && nx < width) {
+                    if (motion_mask[ny * width + nx] >= high_thresh) {
+                        strong_neighbor = true;
+                        break;
+                    }
+                }
+            }
+        }
+        motion_mask[idx] = strong_neighbor ? 1.0f : 0.0f;
+    }
+}
+
+extern "C" {
+    void filter_impl(uint8_t* buffer, int width, int height, int stride, int pixel_stride)
+    {
+        static bool first_frame = true;
+        static PixelState* d_pixel_states = nullptr;
+        static float* d_motion_mask = nullptr;
+        static float* d_temp_mask = nullptr;
+        static uint8_t* d_buffer = nullptr;
+
+        cudaError_t err;
+
+        // Allocation mémoire pour le premier frame
+        if (first_frame) {
+            err = cudaMalloc(&d_pixel_states, width * height * sizeof(PixelState));
+            CHECK_CUDA_ERROR(err);
+            err = cudaMalloc(&d_motion_mask, width * height * sizeof(float));
+            CHECK_CUDA_ERROR(err);
+            err = cudaMalloc(&d_temp_mask, width * height * sizeof(float));
+            CHECK_CUDA_ERROR(err);
+            err = cudaMalloc(&d_buffer, height * stride);
+            CHECK_CUDA_ERROR(err);
+            
+            // Initialiser les états des pixels
+            std::vector<PixelState> h_pixel_states(width * height);
+            for (int y = 0; y < height; ++y) {
+                rgb* lineptr = (rgb*)(buffer + y * stride);
+                for (int x = 0; x < width; ++x) {
+                    int idx = y * width + x;
+                    rgb& pixel = lineptr[x];
+                    h_pixel_states[idx].bg_r = pixel.r;
+                    h_pixel_states[idx].bg_g = pixel.g;
+                    h_pixel_states[idx].bg_b = pixel.b;
+                    h_pixel_states[idx].time = 0;
+                }
+            }
+            
+            err = cudaMemcpy(d_pixel_states, h_pixel_states.data(), 
+                      width * height * sizeof(PixelState), cudaMemcpyHostToDevice);
+            CHECK_CUDA_ERROR(err);
+            
+            first_frame = false;
+            return;
+        }
+
+        err = cudaMemcpy(d_buffer, buffer, height * stride, cudaMemcpyHostToDevice);
+        CHECK_CUDA_ERROR(err);
+
+        dim3 blockSize(16, 16);
+        dim3 gridSize((width + blockSize.x - 1) / blockSize.x,
+                     (height + blockSize.y - 1) / blockSize.y);
+
+        // Détecter le mouvement
+        detectMotionKernel<<<gridSize, blockSize>>>(
+            d_buffer, d_pixel_states, d_motion_mask, width, height, stride);
+        
+        // Opérations morphologiques
+        int radius = fmax(3, fmin(width, height) / 100);
+        
+        morphologicalErosionKernel<<<gridSize, blockSize>>>(
+            d_motion_mask, d_temp_mask, width, height, radius);
+        
+        morphologicalDilationKernel<<<gridSize, blockSize>>>(
+            d_temp_mask, d_motion_mask, width, height, radius);
+
+        // Seuillage par hystérésis
+        hysteresisThresholdingKernel<<<gridSize, blockSize>>>(
+            d_motion_mask, width, height, 4.0f, 30.0f);
+
+        // Appliquer le masque final au buffer
+        applyMotionMaskKernel<<<gridSize, blockSize>>>(
+            d_buffer, d_motion_mask, width, height, stride);
+
+        // Copier le résultat vers le CPU
+        err = cudaMemcpy(buffer, d_buffer, height * stride, cudaMemcpyDeviceToHost);
+        CHECK_CUDA_ERROR(err);
+        
+        err = cudaDeviceSynchronize();
+        CHECK_CUDA_ERROR(err);
+    }
+}
